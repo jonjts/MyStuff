@@ -1,5 +1,7 @@
 package br.com.tep.mystuff;
 
+import br.com.tep.mystuff.service.PeformLoginTask;
+
 import com.actionbarsherlock.app.SherlockActivity;
 
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends SherlockActivity {
 
@@ -34,7 +37,14 @@ public class Login extends SherlockActivity {
 			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(), Main.class));
+				String numero = edtNumero.getText().toString();
+				String senha = edtSenha.getText().toString();
+				try{
+				PeformLoginTask loginTask = new PeformLoginTask(Login.this, numero, senha);
+				loginTask.execute();
+				}catch(Exception e){
+					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+				}
 				
 			}
 		});
