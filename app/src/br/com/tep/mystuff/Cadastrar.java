@@ -19,7 +19,7 @@ public class Cadastrar extends SherlockActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.cadastrar);
+		setContentView(R.layout.cadastrar_usuario);
 		edtEmail = (EditText) findViewById(R.id.edtCadEmail);
 		edtNumero = (EditText) findViewById(R.id.edtCadtelefone);
 		edtSenha = (EditText) findViewById(R.id.edtCadSenha);
