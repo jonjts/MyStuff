@@ -1,5 +1,6 @@
 package br.com.tep.mystuff;
 
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
@@ -54,4 +55,17 @@ public class Main extends SherlockActivity{
 	        return super.onCreateOptionsMenu(menu);
 	    }
 	 
+	 
+	 @Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+		case CATEGORIAS:
+			startActivity(new Intent(this, ListarCategoria.class));
+			break;
+
+		default:
+			break;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
 }

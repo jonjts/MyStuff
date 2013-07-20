@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import br.com.tep.mystuff.service.PeformLoginTask;
+import br.com.tep.mystuff.service.PefromSignupTask;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -35,8 +38,14 @@ public class Cadastrar extends SherlockActivity{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				String numero = edtNumero.getText().toString();
+				String senha = edtSenha.getText().toString();
+				try{
+				PefromSignupTask signupTask = new PefromSignupTask(Cadastrar.this, numero, senha,"");
+				signupTask.execute();
+				}catch(Exception e){
+					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 		

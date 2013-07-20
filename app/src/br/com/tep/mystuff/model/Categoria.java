@@ -15,6 +15,10 @@ public class Categoria {
 	}
 	
 
+	public Categoria() {
+		super();
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -28,6 +32,12 @@ public class Categoria {
 	}
 
 	public String getNome() {
+		return nome;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
 		return nome;
 	}
 }

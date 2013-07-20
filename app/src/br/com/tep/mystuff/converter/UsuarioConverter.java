@@ -12,11 +12,11 @@ import br.com.tep.mystuff.model.Usuario;
 
 public class UsuarioConverter {
 
-	public static String toJSON(String telefone, String senha)
+	public static String toJSON(String telefone, String senha, String email)
 			throws JSONException {
 		JSONStringer js = new JSONStringer();
 
-		js.object().key("numeroTelefone").value(telefone).key("senha").value(senha)
+		js.object().key("numeroTelefone").value(telefone).key("senha").value(senha).key("email").value(email)
 				.endObject();
 
 		return js.toString();

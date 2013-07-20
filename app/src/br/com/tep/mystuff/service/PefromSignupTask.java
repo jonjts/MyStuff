@@ -12,7 +12,6 @@ import br.com.tep.mystuff.dto.Response;
 import br.com.tep.mystuff.dto.ResponseStatus;
 import br.com.tep.mystuff.util.Constant;
 import br.com.tep.mystuff.util.WebClient;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,15 +19,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-
-public class PeformLoginTask extends AsyncTask<Object, Object, String> {
+public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 
 	private final Context context;
 	private ProgressDialog progressDialog;
 	private String telefone;
 	private String senha;
+	private String email;
 
-	public PeformLoginTask(Context context, String telefone, String senha) {
+	public PefromSignupTask(Context context, String telefone, String senha, String email) {
 		this.context = context;
 		this.telefone = telefone;
 		this.senha = senha;
@@ -38,8 +37,8 @@ public class PeformLoginTask extends AsyncTask<Object, Object, String> {
 	protected String doInBackground(Object... params) {
 
 		try {
-			String url = "http://192.168.1.40:8086/mystuff/login";
-			String json = UsuarioConverter.toJSON(telefone, senha,"");
+			String url = "http://192.168.1.40:8086/mystuff/signin";
+			String json = UsuarioConverter.toJSON(telefone, senha,email);
 
 			WebClient wc = new WebClient(url);
 

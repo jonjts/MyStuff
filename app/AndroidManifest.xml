@@ -24,7 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:theme="@style/Theme.Sherlock.Light.NoActionBar" android:name="Cadastrar"></activity>
-        <activity android:name="Main"></activity>
+        <activity android:name="Main">
+             
+        </activity>
+        <activity android:name="ListarCategoria"></activity>
     </application>
 
 </manifest>
