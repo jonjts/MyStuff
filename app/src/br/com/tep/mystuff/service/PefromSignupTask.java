@@ -31,6 +31,7 @@ public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 		this.context = context;
 		this.telefone = telefone;
 		this.senha = senha;
+		this.email = email;
 	}
 
 	@Override

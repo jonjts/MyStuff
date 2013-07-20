@@ -40,8 +40,9 @@ public class Cadastrar extends SherlockActivity{
 			public void onClick(View v) {
 				String numero = edtNumero.getText().toString();
 				String senha = edtSenha.getText().toString();
+				String email = edtEmail.getText().toString();
 				try{
-				PefromSignupTask signupTask = new PefromSignupTask(Cadastrar.this, numero, senha,"");
+				PefromSignupTask signupTask = new PefromSignupTask(Cadastrar.this, numero, senha,email);
 				signupTask.execute();
 				}catch(Exception e){
 					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
