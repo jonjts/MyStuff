@@ -37,8 +37,8 @@ public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 	protected String doInBackground(Object... params) {
 
 		try {
-			String url = "http://192.168.1.40:8086/mystuff/signin";
-			String json = UsuarioConverter.toJSON(telefone, senha,email);
+			String url = "http://mystuff.michef.com.br/signin";
+			String json = UsuarioConverter.toJSON(telefone, email, senha);
 
 			WebClient wc = new WebClient(url);
 
@@ -67,6 +67,9 @@ public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 						response.getMessages().get(0).getValue(),
 						Toast.LENGTH_SHORT).show();
 			} else {
+				Toast.makeText(context,
+						"Usuário cadastrado com sucesso!",
+						Toast.LENGTH_SHORT).show();
 				mainAction();
 			}
 			
