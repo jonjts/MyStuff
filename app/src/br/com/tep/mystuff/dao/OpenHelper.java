@@ -26,6 +26,7 @@ public class OpenHelper extends android.database.sqlite.SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CategoriaDAO.SCRIPT_CRIACAO_TABELA_Categoria);
+        db.execSQL(UsuarioDAO.SCRIPT_CRIACAO_TABELA_USUARIO);
         String[] s = CategoriaDAO.ss;
         for(int i = 0; i < s.length; i++ ){
         	db.execSQL(s[i]);
