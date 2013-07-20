@@ -29,6 +29,10 @@ public class Main extends SherlockActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
+		if(getIntent().getExtras()!= null && getIntent().getExtras().containsKey("email")){
+			getSupportActionBar().setSubtitle(getIntent().getExtras().getString("email"));
+		}
+		
 		listEmprestado = (ListView) findViewById(R.id.listEmprstado);
 		listEmprestei = (ListView) findViewById(R.id.listEmprestei);
 		

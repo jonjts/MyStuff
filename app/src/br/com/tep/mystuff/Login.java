@@ -40,8 +40,12 @@ public class Login extends SherlockActivity {
 				String numero = edtNumero.getText().toString();
 				String senha = edtSenha.getText().toString();
 				try{
-				PeformLoginTask loginTask = new PeformLoginTask(Login.this, numero, senha);
-				loginTask.execute();
+					if(numero.length() > 0 && senha.length() > 0){
+						PeformLoginTask loginTask = new PeformLoginTask(Login.this, numero, senha);
+						loginTask.execute();
+					}else{
+						Toast.makeText(Login.this, "Dados invalidos!", Toast.LENGTH_LONG).show();
+					}
 				}catch(Exception e){
 					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 				}

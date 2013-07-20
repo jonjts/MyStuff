@@ -69,7 +69,7 @@ public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 						Toast.LENGTH_SHORT).show();
 			} else {
 				Toast.makeText(context,
-						"Usuário cadastrado com sucesso!",
+						"Usuario cadastrado com sucesso!",
 						Toast.LENGTH_SHORT).show();
 				mainAction();
 			}
@@ -82,6 +82,7 @@ public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 
 	private void mainAction() {
 		Intent i = new Intent(context, Main.class);
+		i.putExtra("email", email);
 		context.startActivity(i);
 		((Activity) context).finish();
 	}
