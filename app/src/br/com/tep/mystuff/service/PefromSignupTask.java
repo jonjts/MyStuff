@@ -39,7 +39,7 @@ public class PefromSignupTask extends AsyncTask<Object, Object, String>  {
 
 		try {
 			String url = "http://mystuff.michef.com.br/signin";
-			String json = UsuarioConverter.toJSON(telefone, email, senha);
+			String json = UsuarioConverter.toJSON(telefone, senha, email);
 
 			WebClient wc = new WebClient(url);
 

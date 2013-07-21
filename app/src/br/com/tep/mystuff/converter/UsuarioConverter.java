@@ -9,7 +9,7 @@ public class UsuarioConverter {
 			throws JSONException {
 		JSONStringer js = new JSONStringer();
 
-		js.object().key("numeroTelefone").value(email).key("email").value(senha).key("senha").value(email)
+		js.object().key("numeroTelefone").value(telefone).key("email").value(email).key("senha").value(senha)
 				.endObject();
 
 		return js.toString();

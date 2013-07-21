@@ -39,7 +39,7 @@ public class PeformLoginTask extends AsyncTask<Object, Object, String> {
 
 		try {
 			String url = "http://mystuff.michef.com.br/login";
-			String json = UsuarioConverter.toJSON(telefone, "", senha);
+			String json = UsuarioConverter.toJSON(telefone, senha, "");
 
 			WebClient wc = new WebClient(url);
 
