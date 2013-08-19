@@ -18,5 +18,11 @@
     <string name="sair">Sair</string>
     <string name="vazio">Vazio</string>
     <string name="NomeCategoria">Nome da Categoria</string>
+    <string name="objeto">Objeto</string>
+    <string name="comentario_opcional">Comentario(Opcional)</string>
+    <string name="emprestar_contato">Emprestar a Contato</string>
+    <string name="data_entrega">Data Entrega</string>
+    <string name="notificar">Notificar</string>
+    <string name="emprestar">Emprestar</string>
 
 </resources>
