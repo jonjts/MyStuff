@@ -33,7 +33,7 @@ public class ListarCategoria extends SherlockActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista_categoria);
-		getSupportActionBar().setSubtitle("Categorias");
+		getSupportActionBar().setTitle("Categorias");
 		lisCategoria = (ListView) findViewById(R.id.lisCategorias);
 		categoriaDAO = CategoriaDAO.getInstance(getApplicationContext());
 		loadListView();
@@ -192,7 +192,7 @@ public class ListarCategoria extends SherlockActivity {
 							public void onClick(View arg0) {
 								try {
 									String nome = ((EditText) view.findViewById(R.id.edtNomeCategoria)).getText().toString();
-									if(!nome.trim().isEmpty()){
+									if(nome.trim().length() > 0){
 										categoria.setNome(nome);
 										categoriaDAO.update(categoria);
 										loadListView();

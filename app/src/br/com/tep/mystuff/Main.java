@@ -2,6 +2,7 @@ package br.com.tep.mystuff;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,9 @@ public class Main extends SherlockActivity{
 		case CATEGORIAS:
 			startActivity(new Intent(this, ListarCategoria.class));
 			break;
-
+		case ADD:
+			startActivityForResult(new Intent(this, CadastrarEmprestimo.class), ADD);
+			break;
 		default:
 			break;
 		}

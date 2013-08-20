@@ -8,7 +8,7 @@ import android.provider.CalendarContract.CalendarAlerts;
 public class OpenHelper extends android.database.sqlite.SQLiteOpenHelper{
 
 	public static final String NOME_BANCO =  "my_stuff";
-    public static final int VERSAO =  1;
+    public static final int VERSAO =  2;
      
     private static OpenHelper instance;
      
@@ -27,6 +27,7 @@ public class OpenHelper extends android.database.sqlite.SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CategoriaDAO.SCRIPT_CRIACAO_TABELA_Categoria);
         db.execSQL(UsuarioDAO.SCRIPT_CRIACAO_TABELA_USUARIO);
+        db.execSQL(EmprestimoDAO.SCRIPT_CRIACAO_TABELA_EMPRESTIMO);
         String[] s = CategoriaDAO.ss;
         for(int i = 0; i < s.length; i++ ){
         	db.execSQL(s[i]);
@@ -35,7 +36,9 @@ public class OpenHelper extends android.database.sqlite.SQLiteOpenHelper{
  
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    	db.execSQL(EmprestimoDAO.SCRIPT_DELECAO_TABELA);
         db.execSQL(CategoriaDAO.SCRIPT_DELECAO_TABELA);
+        db.execSQL(UsuarioDAO.SCRIPT_DELECAO_TABELA);
         onCreate(db);
     }
  
