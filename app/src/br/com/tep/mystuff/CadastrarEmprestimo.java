@@ -103,6 +103,7 @@ public class CadastrarEmprestimo extends SherlockActivity {
 	    Bundle b = data.getExtras();
 	   Bitmap pic = (Bitmap) b.get("data");
 	    if (pic != null) {
+	    	
 	        imgCoisa.setImageBitmap(pic);
 	    }
 	}
