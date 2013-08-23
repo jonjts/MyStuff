@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtNomeContato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/emprestei"
@@ -33,7 +33,7 @@
     </ListView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtEmailContato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/emprestado"

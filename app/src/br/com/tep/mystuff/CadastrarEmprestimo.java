@@ -2,6 +2,9 @@ package br.com.tep.mystuff;
 
 import java.io.File;
 import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,9 +22,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 import br.com.tep.mystuff.dao.CategoriaDAO;
 import br.com.tep.mystuff.dao.EmprestimoDAO;
 import br.com.tep.mystuff.model.Categoria;
+import br.com.tep.mystuff.model.Emprestimo;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -41,8 +46,10 @@ public class CadastrarEmprestimo extends SherlockActivity {
 	private CheckBox chkNotificar;
 	private Button btnCancel;
 	private Button btnEmprestar;
+	private SimpleDateFormat format;
 	
 	private int TAKE_THE_PICTURE = 1;
+	private int GET_CONTACT = 2;	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,34 @@ public class CadastrarEmprestimo extends SherlockActivity {
 		categoriaDAO = CategoriaDAO.getInstance(getApplicationContext());
 
 		loadCategorias();
+		
+		btnCancel.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			finish();
+				
+			}
+		});
+		
+		btnEmprestar.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Emprestimo emp = isValide();
+				if(emp == null){
+					Toast.makeText(getApplicationContext(), "Dados invalidos", Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+		
+		ibtAddContato.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent(CadastrarEmprestimo.this, ContatosAgenda.class), GET_CONTACT);
+			}
+		});
 
 		imgCoisa.setOnClickListener(new View.OnClickListener() {
 
@@ -96,6 +131,9 @@ public class CadastrarEmprestimo extends SherlockActivity {
 	        } else if (resultCode == RESULT_CANCELED) {
 
 	        }
+	    }else if(requestCode == GET_CONTACT && resultCode == RESULT_OK){
+	    	String tel = data.getStringExtra("tel");
+	    	edtContato.setText(tel);
 	    }
 	}
 
@@ -103,7 +141,6 @@ public class CadastrarEmprestimo extends SherlockActivity {
 	    Bundle b = data.getExtras();
 	   Bitmap pic = (Bitmap) b.get("data");
 	    if (pic != null) {
-	    	
 	        imgCoisa.setImageBitmap(pic);
 	    }
 	}
@@ -125,6 +162,29 @@ public class CadastrarEmprestimo extends SherlockActivity {
 		}
 		return super.onMenuItemSelected(featureId, item);
 
+	}
+	
+	private Emprestimo isValide(){
+		Emprestimo emprestimo = new Emprestimo();
+		emprestimo.setComentario(edtComentario.getText().toString());
+		String objeto = edtObjeto.getText().toString();
+		emprestimo.setObjeto(objeto);
+		if(emprestimo.getObjeto().isEmpty()){
+			return null;
+		}
+		if(spnCategorias.getSelectedItem() != null){
+			emprestimo.setCategoria_id(((Categoria)spnCategorias.getSelectedItem()).getId());
+		}else{
+			return null;
+		}
+		emprestimo.setContato(edtContato.getText().toString());
+		if(emprestimo.getContato().isEmpty()){
+			return null;
+		}
+	
+		emprestimo.setNotificar(chkNotificar.isChecked() ? 1 : 0);
+		return emprestimo;
+		
 	}
 
 }
