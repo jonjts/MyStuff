@@ -25,9 +25,7 @@ public class EmprestimoDAO {
 	public static final String COLUNA_CONTATO = "emp_contato";
 	public static final String COLUNA_DATA_ENTREGA = "emp_dtentrega";
 	public static final String COLUNA_NOTIFICAR = "emp_notificar";
-	public static final String COLUNA_USU_ID = " usu_id";
-	
-	
+	public static final String COLUNA_USU_ID = "usu_id";
 
 	public static final String SCRIPT_CRIACAO_TABELA_EMPRESTIMO = "CREATE TABLE [emprestimo] "
 			+ "( [emp_id] INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -65,6 +63,15 @@ public class EmprestimoDAO {
 
 	public List<Emprestimo> getAll() {
 		String queryReturnAll = "SELECT * FROM " + NOME_TABELA;
+		Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
+		List<Emprestimo> list = construirEmprestimoPorValue(cursor);
+
+		return list;
+	}
+
+	public List<Emprestimo> getByUsu_id(int usu_id) {
+		String queryReturnAll = "SELECT * FROM " + NOME_TABELA
+				+ " WHERE usu_id = " + usu_id;
 		Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
 		List<Emprestimo> list = construirEmprestimoPorValue(cursor);
 
@@ -114,7 +121,7 @@ public class EmprestimoDAO {
 					int indexObjeto = cursor.getColumnIndex(COLUNA_OBJETO);
 					int indexComentario = cursor.getColumnIndex(COLUNA_COMENTARIO);
 					int indexCategoria_id = cursor.getColumnIndex(COLUNA_CATEGORIA_ID);
-					int indexConatato = cursor.getColumnIndex(COLUNA_DATA_ENTREGA);
+					int indexConatato = cursor.getColumnIndex(COLUNA_CONTATO);
 					int indexDtEntrega = cursor.getColumnIndex(COLUNA_DATA_ENTREGA);
 					int indexNoficicar = cursor.getColumnIndex(COLUNA_NOTIFICAR);
 					int indexUsuId = cursor.getColumnIndex(COLUNA_USU_ID);
@@ -126,7 +133,7 @@ public class EmprestimoDAO {
 					int categoria_id = cursor.getInt(indexCategoria_id);
 					String contato = cursor.getString(indexConatato);
 					Date dtEntrega = null;
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/YYYY");
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					try {
 						dtEntrega = dateFormat.parse(cursor.getString(indexDtEntrega));
 					} catch (ParseException e) {
@@ -140,7 +147,10 @@ public class EmprestimoDAO {
 				} while (cursor.moveToNext());
 			}
 
-		} finally {
+		}catch (Exception e) {
+			e.printStackTrace();
+		} 
+		finally {
 			cursor.close();
 		}
 		return list;
@@ -152,8 +162,9 @@ public class EmprestimoDAO {
 		values.put(COLUNA_CATEGORIA_ID, emprestimo.getCategoria_id());
 		values.put(COLUNA_COMENTARIO, emprestimo.getComentario());
 		values.put(COLUNA_CONTATO, emprestimo.getContato());
-		values.put(COLUNA_DATA_ENTREGA, dateFormat.format(emprestimo.getDtEntrega()));
-		//values.put(COLUNA_ID, emprestimo.getId());
+		values.put(COLUNA_DATA_ENTREGA,
+				dateFormat.format(emprestimo.getDtEntrega()));
+		// values.put(COLUNA_ID, emprestimo.getId());
 		values.put(COLUNA_IMAGEM, emprestimo.getImagem());
 		values.put(COLUNA_NOTIFICAR, emprestimo.getNotificar());
 		values.put(COLUNA_OBJETO, emprestimo.getObjeto());

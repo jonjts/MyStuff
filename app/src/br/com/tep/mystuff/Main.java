@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import br.com.tep.mystuff.dao.EmprestimoDAO;
+import br.com.tep.mystuff.model.Emprestimo;
 import br.com.tep.mystuff.util.Constant;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -28,6 +29,8 @@ public class Main extends SherlockActivity{
 	
 	private ListView listEmprestado;
 	private ListView listEmprestei;
+	
+	private EmprestimoDAO emprestimoDAO;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,27 @@ public class Main extends SherlockActivity{
 		
 		listEmprestei.setEmptyView(findViewById(R.id.vazio));
 		listEmprestado.setEmptyView(findViewById(R.id.TextVazio));
+		
+		emprestimoDAO = EmprestimoDAO.getInstance(getApplicationContext());
+		
 	}
 	
+	 private void loadListEmpretado() {
+		 SharedPreferences settings = getSharedPreferences(Constant.PREF_FILE, Context.MODE_PRIVATE);
+		 int usu_id = settings.getInt("usu_id", 0);
+		ArrayAdapter<Emprestimo> list = new ArrayAdapter<Emprestimo>(this, android.R.layout.simple_list_item_1, emprestimoDAO.getByUsu_id(usu_id));
+		listEmprestado.setAdapter(list);
+		
+	}
+
+	 
 	 @Override
+	protected void onResume() {
+		super.onResume();
+		loadListEmpretado();
+	}
+	 
+	@Override
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	        
 	            menu.add(0, ADD, 0, R.string.adicionar)
@@ -85,5 +106,6 @@ public class Main extends SherlockActivity{
 	 @Override
 	protected void onDestroy() {
 		super.onDestroy();
+		emprestimoDAO.close();
 	}
 }

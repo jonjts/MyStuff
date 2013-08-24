@@ -104,5 +104,10 @@ public class Emprestimo {
 	public void setNotificar(int notificar) {
 		this.notificar = notificar;
 	}
+	
+	@Override
+	public String toString() {
+		return objeto;
+	}
 
 }

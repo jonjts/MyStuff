@@ -289,7 +289,6 @@ public class CadastrarEmprestimo extends SherlockActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		emprestimoDAO.close();
 		categoriaDAO.close();
 	}
 
