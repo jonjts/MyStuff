@@ -15,26 +15,33 @@ import android.util.Log;
 public class WebClient {
 
 	private final String url;
-
+	private String cookies;
+	
 	public WebClient(String url) {
 		this.url = url;
 	}
 
 	public String post(String json) throws ClientProtocolException, IOException {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
-		
+
 		HttpPost post = new HttpPost(url);
 		post.setHeader("Accept", "application/json");
 		post.setHeader("Content-type", "application/json");
 		post.setEntity(new StringEntity(json));
-		 
+
 		HttpResponse response = httpClient.execute(post);
-		
+
 		for (Header h : response.getAllHeaders()) {
-			Log.i("Console", h.getValue());
+			if (h.getName().equals("Set-Cookie")) {
+				cookies = h.getValue();
+				break;
+			}
 		}
-		
-		
+
 		return EntityUtils.toString(response.getEntity());
+	}
+
+	public String getCookies() {
+		return cookies;
 	}
 }

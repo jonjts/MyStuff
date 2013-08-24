@@ -1,12 +1,14 @@
 package br.com.tep.mystuff;
 
-import br.com.tep.mystuff.service.PeformLoginTask;
+import br.com.tep.mystuff.task.PeformLoginTask;
+import br.com.tep.mystuff.util.Constant;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +34,10 @@ public class Login extends SherlockActivity {
 		edtSenha = (EditText) findViewById(R.id.edtSenha);
 		txtNaoCadastrado = (TextView) findViewById(R.id.txtNaoCadastrado);
 		btnLogin = (Button) findViewById(R.id.btnLogin);
+		
+		SharedPreferences settings = getSharedPreferences(Constant.PREF_FILE, MODE_PRIVATE);
+		String telefone = settings.getString("numeroTelefone", "");
+		edtNumero.setText(telefone);
 		
 		btnLogin.setOnClickListener(new Button.OnClickListener() {
 			

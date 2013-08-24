@@ -1,6 +1,8 @@
 package br.com.tep.mystuff;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.location.Address;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import br.com.tep.mystuff.dao.EmprestimoDAO;
+import br.com.tep.mystuff.util.Constant;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -33,6 +37,8 @@ public class Main extends SherlockActivity{
 		if(getIntent().getExtras()!= null && getIntent().getExtras().containsKey("email")){
 			getSupportActionBar().setSubtitle(getIntent().getExtras().getString("email"));
 		}
+		SharedPreferences settings = getSharedPreferences(Constant.PREF_FILE, Context.MODE_PRIVATE);
+		getSupportActionBar().setSubtitle(settings.getString("numeroTelefone", ""));
 		
 		listEmprestado = (ListView) findViewById(R.id.listEmprstado);
 		listEmprestei = (ListView) findViewById(R.id.listEmprestei);
@@ -74,5 +80,10 @@ public class Main extends SherlockActivity{
 			break;
 		}
 		return super.onMenuItemSelected(featureId, item);
+	}
+	 
+	 @Override
+	protected void onDestroy() {
+		super.onDestroy();
 	}
 }

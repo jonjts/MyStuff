@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import br.com.tep.mystuff.service.PeformLoginTask;
-import br.com.tep.mystuff.service.PefromSignupTask;
+import br.com.tep.mystuff.task.PeformLoginTask;
+import br.com.tep.mystuff.task.PefromSignupTask;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;

@@ -8,11 +8,11 @@ import android.provider.CalendarContract.CalendarAlerts;
 public class OpenHelper extends android.database.sqlite.SQLiteOpenHelper{
 
 	public static final String NOME_BANCO =  "my_stuff";
-    public static final int VERSAO =  2;
+    public static final int VERSAO =  4;
      
     private static OpenHelper instance;
      
-    private OpenHelper(Context context) {
+    public OpenHelper(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
     }
      

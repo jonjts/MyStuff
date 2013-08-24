@@ -24,7 +24,7 @@ public class UsuarioDAO {
 	    public static final String SCRIPT_DELECAO_TABELA =  "DROP TABLE IF EXISTS " + NOME_TABELA;
 	 
 	    private SQLiteDatabase dataBase = null;
-	 
+
 	 
 	    private static UsuarioDAO instance;
 	     
@@ -39,10 +39,17 @@ public class UsuarioDAO {
 	        dataBase = persistenceHelper.getWritableDatabase();
 	    }
 	    
+	    public boolean exist(Usuario usuario){
+	    	 String queryReturnAll = "SELECT * FROM " + NOME_TABELA+ " WHERE usu_id="+usuario.getId();
+		        Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
+		        return cursor.getCount() > 0;
+	    }
 	    
 	    public void insert(Usuario usuario) {
+	    	if(!exist(usuario)){
 	        ContentValues values = gerarContentValeuesUsuario(usuario);
 	        dataBase.insert(NOME_TABELA, null, values);
+	    	}
 	    }
 	 
 	    public List<Usuario> getAll() {

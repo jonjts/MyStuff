@@ -148,7 +148,7 @@ public class EmprestimoDAO {
 
 	private ContentValues gerarContentValeuesEmprestimo(Emprestimo emprestimo) {
 		ContentValues values = new ContentValues();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/YYYY");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		values.put(COLUNA_CATEGORIA_ID, emprestimo.getCategoria_id());
 		values.put(COLUNA_COMENTARIO, emprestimo.getComentario());
 		values.put(COLUNA_CONTATO, emprestimo.getContato());

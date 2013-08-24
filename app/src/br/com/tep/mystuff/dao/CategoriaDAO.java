@@ -19,7 +19,8 @@ public class CategoriaDAO {
 	 
 	 
 	    public static final String SCRIPT_CRIACAO_TABELA_Categoria = "CREATE TABLE [categoria] " +
-	    		"( [cat_id] INTEGER PRIMARY KEY AUTOINCREMENT,[cat_nome] [VARCHAR(200)] NOT NULL)";
+	    		"( [cat_id] INTEGER PRIMARY KEY AUTOINCREMENT," +
+	    		"[cat_nome] [VARCHAR(200)] NOT NULL)";
 	 
 	    public static final String SCRIPT_DELECAO_TABELA =  "DROP TABLE IF EXISTS " + NOME_TABELA;
 	    public static final String[] ss = new String[]{"INSERT INTO categoria (cat_nome)VALUES ('Geral')"};
