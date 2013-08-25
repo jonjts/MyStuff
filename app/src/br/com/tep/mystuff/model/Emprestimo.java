@@ -4,24 +4,24 @@ import java.util.Date;
 
 import android.R.bool;
 
-public class Emprestimo {
+public class Emprestimo implements Comparable<Emprestimo>{
 
-	private int id;
+	private long id;
 	private String imagem;
 	private String objeto;
 	private String comentario;
-	private int categoria_id;
+	private long categoria_id;
 	private String contato;
 	private Date dtEntrega;
 	private int notificar;
-	private int usu_id;
+	private long usu_id;
 
 	public Emprestimo() {
 		super();
 	}
 
-	public Emprestimo(int id,String imagem, String objeto, String comentario,
-			int categoria_id, String contato, Date dtEntrega, int notificar, int usu_id) {
+	public Emprestimo(long id,String imagem, String objeto, String comentario,
+			long categoria_id, String contato, Date dtEntrega, int notificar, long usu_id) {
 		super();
 		this.id = id;
 		this.imagem = imagem;
@@ -34,18 +34,18 @@ public class Emprestimo {
 		this.usu_id = usu_id;
 	}
 	
-	public int getUsu_id() {
+	public long getUsu_id() {
 		return usu_id;
 	}
 	
-	public void setUsu_id(int usu_id) {
+	public void setUsu_id(long usu_id) {
 		this.usu_id = usu_id;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -73,11 +73,11 @@ public class Emprestimo {
 		this.comentario = comentario;
 	}
 
-	public int getCategoria_id() {
+	public long getCategoria_id() {
 		return categoria_id;
 	}
 
-	public void setCategoria_id(int categoria_id) {
+	public void setCategoria_id(long categoria_id) {
 		this.categoria_id = categoria_id;
 	}
 
@@ -108,6 +108,14 @@ public class Emprestimo {
 	@Override
 	public String toString() {
 		return objeto;
+	}
+
+	@Override
+	public int compareTo(Emprestimo another) {
+		if(this.getId() == another.getId()){
+			return 1;
+		}
+		return 0;
 	}
 
 }

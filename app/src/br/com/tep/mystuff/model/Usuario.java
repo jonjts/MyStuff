@@ -1,13 +1,15 @@
 package br.com.tep.mystuff.model;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
 	
-	private int id;
+	private long id;
 	private String numero;
 	private String email;
 	
-	public Usuario(int id, String numero, String emial) {
+	public Usuario(long id, String numero, String emial) {
 		super();
 		this.id = id;
 		this.numero = numero;
@@ -19,11 +21,11 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(int id) {
+	public Usuario(long id) {
 		this.id = id;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

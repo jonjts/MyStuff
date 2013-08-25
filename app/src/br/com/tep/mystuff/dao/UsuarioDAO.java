@@ -106,7 +106,7 @@ public class UsuarioDAO {
 	                    int indexEmail = cursor.getColumnIndex(COLUNA_EMAIL);
 	                    
 	 
-	                    int id = cursor.getInt(indexID);
+	                    long id = cursor.getLong(indexID);
 	                    String numero = cursor.getString(indexNumero);
 	                    String email = cursor.getString(indexEmail);
 	                    

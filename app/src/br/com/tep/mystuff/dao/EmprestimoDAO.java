@@ -69,7 +69,7 @@ public class EmprestimoDAO {
 		return list;
 	}
 
-	public List<Emprestimo> getByUsu_id(int usu_id) {
+	public List<Emprestimo> getByUsu_id(long usu_id) {
 		String queryReturnAll = "SELECT * FROM " + NOME_TABELA
 				+ " WHERE usu_id = " + usu_id;
 		Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
@@ -78,7 +78,7 @@ public class EmprestimoDAO {
 		return list;
 	}
 
-	public Emprestimo get(int id) {
+	public Emprestimo get(long id) {
 		Cursor c = dataBase.query(NOME_TABELA, null, "emp_id=" + id + "", null,
 				null, null, null);
 		return construirEmprestimoPorValue(c).get(0);
@@ -126,11 +126,11 @@ public class EmprestimoDAO {
 					int indexNoficicar = cursor.getColumnIndex(COLUNA_NOTIFICAR);
 					int indexUsuId = cursor.getColumnIndex(COLUNA_USU_ID);
 
-					int id = cursor.getInt(indexID);
+					long id = cursor.getLong(indexID);
 					String imagem = cursor.getString(indexImagem);
 					String objeto = cursor.getString(indexObjeto);
 					String comentario = cursor.getString(indexComentario);
-					int categoria_id = cursor.getInt(indexCategoria_id);
+					long categoria_id = cursor.getLong(indexCategoria_id);
 					String contato = cursor.getString(indexConatato);
 					Date dtEntrega = null;
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -140,7 +140,7 @@ public class EmprestimoDAO {
 						e.printStackTrace();
 					}
 					int notificar = cursor.getInt(indexNoficicar);
-					int usu_id = cursor.getInt(indexUsuId);
+					long usu_id = cursor.getLong(indexUsuId);
 					
 					Emprestimo emprestimo = new Emprestimo(id, imagem, objeto, comentario, categoria_id, contato, dtEntrega, notificar, usu_id);
 					list.add(emprestimo);

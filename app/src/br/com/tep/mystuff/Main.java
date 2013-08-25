@@ -12,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import br.com.tep.mystuff.adapter.EmprestimoAdapter;
 import br.com.tep.mystuff.dao.EmprestimoDAO;
+import br.com.tep.mystuff.helper.ContextHelper;
 import br.com.tep.mystuff.model.Emprestimo;
 import br.com.tep.mystuff.util.Constant;
 
@@ -32,16 +34,17 @@ public class Main extends SherlockActivity{
 	
 	private EmprestimoDAO emprestimoDAO;
 	
+	private ContextHelper contextHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		if(getIntent().getExtras()!= null && getIntent().getExtras().containsKey("email")){
-			getSupportActionBar().setSubtitle(getIntent().getExtras().getString("email"));
+		if(getIntent().getExtras()!= null && getIntent().getExtras().containsKey("context")){
+			contextHelper = (ContextHelper) getIntent().getExtras().getSerializable("context");
+			getSupportActionBar().setSubtitle(contextHelper.getUsuario().getEmail());
 		}
-		SharedPreferences settings = getSharedPreferences(Constant.PREF_FILE, Context.MODE_PRIVATE);
-		getSupportActionBar().setSubtitle(settings.getString("numeroTelefone", ""));
 		
 		listEmprestado = (ListView) findViewById(R.id.listEmprstado);
 		listEmprestei = (ListView) findViewById(R.id.listEmprestei);
@@ -56,9 +59,9 @@ public class Main extends SherlockActivity{
 	
 	 private void loadListEmpretado() {
 		 SharedPreferences settings = getSharedPreferences(Constant.PREF_FILE, Context.MODE_PRIVATE);
-		 int usu_id = settings.getInt("usu_id", 0);
-		ArrayAdapter<Emprestimo> list = new ArrayAdapter<Emprestimo>(this, android.R.layout.simple_list_item_1, emprestimoDAO.getByUsu_id(usu_id));
-		listEmprestado.setAdapter(list);
+		 long usu_id = settings.getLong("usu_id", 0);
+		 EmprestimoAdapter adapter = new EmprestimoAdapter(emprestimoDAO.getByUsu_id(usu_id), this);
+		 listEmprestado.setAdapter(adapter);
 		
 	}
 
@@ -96,6 +99,9 @@ public class Main extends SherlockActivity{
 			break;
 		case ADD:
 			startActivityForResult(new Intent(this, CadastrarEmprestimo.class), ADD);
+			break;
+		case CASCAR_FORA:
+			finish();
 			break;
 		default:
 			break;

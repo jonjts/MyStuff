@@ -95,7 +95,7 @@ public class CategoriaDAO {
 	                    int indexID = cursor.getColumnIndex(COLUNA_ID);
 	                    int indexNome = cursor.getColumnIndex(COLUNA_NOME);
 	 
-	                    int id = cursor.getInt(indexID);
+	                    long id = cursor.getLong(indexID);
 	                    String nome = cursor.getString(indexNome);
 	 
 	                    Categoria categoria = new Categoria(id, nome);

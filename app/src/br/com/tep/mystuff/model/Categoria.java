@@ -2,14 +2,14 @@ package br.com.tep.mystuff.model;
 
 public class Categoria {
 
-	private int id;
+	private long id;
 	private String nome;
 
-	public Categoria(int id) {
+	public Categoria(long id) {
 		this.id= id;
 	}
 	
-	public Categoria(int id, String nome) {
+	public Categoria(long id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
@@ -19,11 +19,11 @@ public class Categoria {
 		super();
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

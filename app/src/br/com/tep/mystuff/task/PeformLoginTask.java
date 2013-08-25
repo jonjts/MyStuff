@@ -91,7 +91,7 @@ public class PeformLoginTask extends AsyncTask<Object, Object, String> {
 			saveLoginPreference(helper);
 
 			Intent i = new Intent(context, Main.class);
-			//i.putExtra("context", helper);
+			i.putExtra("context", helper);
 
 			context.startActivity(i);
 			((Activity) context).finish();
@@ -106,7 +106,7 @@ public class PeformLoginTask extends AsyncTask<Object, Object, String> {
 
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString("numeroTelefone", helper.getUsuario().getNumero());
-		editor.putInt("usu_id", helper.getUsuario().getId());
+		editor.putLong("usu_id", helper.getUsuario().getId());
 
 		editor.commit();
 	}

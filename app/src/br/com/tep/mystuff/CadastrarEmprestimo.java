@@ -281,7 +281,7 @@ public class CadastrarEmprestimo extends SherlockActivity {
 		}
 		emprestimo.setNotificar(chkNotificar.isChecked() ? 1 : 0);
 		SharedPreferences settings = getSharedPreferences(Constant.PREF_FILE, Context.MODE_PRIVATE);
-		emprestimo.setUsu_id(settings.getInt("usu_id", 0));
+		emprestimo.setUsu_id(settings.getLong("usu_id", 0));
 		return emprestimo;
 
 	}

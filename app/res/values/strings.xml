@@ -24,5 +24,7 @@
     <string name="data_entrega">Data Entrega</string>
     <string name="notificar">Notificar</string>
     <string name="emprestar">Emprestar</string>
+    <string name="notificar">Notificar</string>
+    <string name="nao_notificar">Não Notificar</string>
 
 </resources>
