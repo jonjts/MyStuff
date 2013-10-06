@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.IBinder;
 import br.com.tep.mystuff.converter.DevolucaoConverter;
-import br.com.tep.mystuff.converter.EmprestimoConverter;
 import br.com.tep.mystuff.dao.DevolucaoDAO;
 import br.com.tep.mystuff.model.Devolucao;
 
