@@ -1,7 +1,6 @@
 package br.com.tep.mystuff.converter;
 
-import java.util.Date;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,5 +15,11 @@ public class DevolucaoConverter {
 		devolucao.setDtEntrega((String) jsonObject.get("dataEntrega"));
 		
 		return devolucao;
+	}
+	
+	public static JSONArray toArray(String json) throws JSONException {
+		JSONObject obj = new JSONObject(json);
+		JSONArray array = obj.getJSONArray("registros");		
+		return array;
 	}
 }

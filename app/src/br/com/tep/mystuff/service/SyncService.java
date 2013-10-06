@@ -30,7 +30,7 @@ public class SyncService extends Service{
 			//String url = "http://mystuff.michef.com.br/app/usuario/12/emprestimo";
 			
 			String jsonRetorno = "{'registros':[{'objeto':'Objeto Teste 2','categoria':'1','contato':'1','dataEntrega':'20/09/2013','notificar':'0','usuario':'1'}]}";
-			JSONArray lista = EmprestimoConverter.toArray(jsonRetorno);
+			JSONArray lista = DevolucaoConverter.toArray(jsonRetorno);
 			Boolean atraso = insertDevolucoesDB(lista);
 			
 			if (atraso) {

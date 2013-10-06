@@ -15,6 +15,7 @@
     <string name="emprestado">Emprestado</string>
     <string name="adicionar"> Adicionar Emprestimo </string>
     <string name="categorias">Categorias</string>
+    <string name="sincronizar">Sincronizar</string>
     <string name="sair">Sair</string>
     <string name="vazio">Vazio</string>
     <string name="NomeCategoria">Nome da Categoria</string>

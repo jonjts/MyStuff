@@ -3,19 +3,11 @@ package br.com.tep.mystuff;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.DataSetObserver;
-import android.location.Address;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import br.com.tep.mystuff.adapter.EmprestimoAdapter;
 import br.com.tep.mystuff.dao.EmprestimoDAO;
 import br.com.tep.mystuff.helper.ContextHelper;
-import br.com.tep.mystuff.model.Emprestimo;
 import br.com.tep.mystuff.util.Constant;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -28,6 +20,7 @@ public class Main extends SherlockActivity{
 	private final int ADD = 1;
 	private final int CATEGORIAS = 2;
 	private final int CASCAR_FORA = 3;
+	private final int SINCRONIZAR = 4;
 	
 	private ListView listEmprestado;
 	private ListView listEmprestei;
@@ -83,6 +76,10 @@ public class Main extends SherlockActivity{
                 .setIcon(R.drawable.ic_action_name)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 	            
+	            menu.add(0, SINCRONIZAR, 0, R.string.sincronizar)
+                .setIcon(R.drawable.abs__ic_go)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	            
 	            menu.add(0, CASCAR_FORA, 0, R.string.sair)
                 .setIcon(R.drawable.abs__ic_clear_normal)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
@@ -99,6 +96,9 @@ public class Main extends SherlockActivity{
 			break;
 		case ADD:
 			startActivityForResult(new Intent(this, CadastrarEmprestimo.class), ADD);
+			break;
+		case SINCRONIZAR:
+			startService(new Intent("SERVICO_SYNC"));
 			break;
 		case CASCAR_FORA:
 			finish();

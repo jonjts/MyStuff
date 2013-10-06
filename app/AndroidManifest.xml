@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission  android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -35,7 +36,22 @@
         </activity>
         <activity android:name="ListarCategoria"></activity>
         <activity android:name="CadastrarEmprestimo"></activity>
-        <activity android:theme="@style/Theme.Sherlock.Dialog" android:name="ContatosAgenda"></activity>
+        <activity android:theme="@style/Theme.Sherlock.Light.NoActionBar" android:name="ContatosAgenda"></activity>
+        
+        <service android:name=".service.SyncService">
+ 			<intent-filter>
+ 			<action android:name="SERVICO_SYNC" />
+ 			<category android:name="android.intent.category.DEFAULT" />
+ 			</intent-filter>
+		</service>
+
+        <receiver android:name=".receiver.ReceiverBoot" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
